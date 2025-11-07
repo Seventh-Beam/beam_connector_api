@@ -1,0 +1,128 @@
+syntax = "proto3";
+
+package payment.v1;
+
+option go_package = "github.com/setldpay/pays_connector/api/payment/v1;paymentv1";
+option java_package = "com.setldpay.sdk";
+
+// PaymentService provides payment processing capabilities
+service PaymentService {
+  // Get Card Not Present Details
+  rpc GetCardDetails(CardDetailsRequest) returns (CardDetails);
+
+  // Get Account Tokens
+  rpc GetAccountTokens(CardRequest) returns (AccountTokens);
+
+  // Get Account Token
+  rpc GetAppleToken(CardRequest) returns (AppleToken);
+
+  // Get Account Token
+  rpc GetGoogleToken(CardRequest) returns (GoogleToken);
+
+  // Retrieve Pin
+  rpc GetAccountPin(CardRequest) returns (AccountPin);
+
+  // Get Account Details
+  rpc GetAccountDetails(CardRequest) returns (AccountDetails);
+
+  // Get Account Transactions
+  rpc GetAccountTransactions(PagedCardRequest) returns (PagedAccountTransactions);
+}
+
+// Card Request
+message CardRequest {
+  string card_id = 1;
+}
+
+// Card Details Request
+message CardDetailsRequest {
+  string card_id = 1;
+  optional string locale = 2;
+}
+
+// Paged Card Request
+message PagedCardRequest {
+  string card_id = 1;
+
+  int32 offset = 2;
+
+  int32 limit = 3;
+}
+
+// Card Details Response
+message CardDetails {
+  string card_details_url = 1;
+}
+
+// Account Tokens Response
+message AccountTokens {
+
+}
+
+// Google Token
+message GoogleToken {
+  string token = 1;
+}
+
+// Apple Token
+message AppleToken {
+  string token = 1;
+}
+
+// Account Pin
+message AccountPin{
+  string pin = 1;
+}
+
+message AccountBalance {
+  string balance_timestamp = 1;
+  string currency_code = 2;
+  double available_balance = 3;
+  double settled_balance = 4;
+  double reserved_balance = 5;
+}
+
+// Account Details
+message AccountDetails {
+  string cardExtRef = 1;
+  string createdDate = 2;
+  string designId = 3;
+  string accountId = 4;
+  string maskedPan = 5;
+  string status = 6;
+  bool isActive = 7;
+  AccountBalance balance = 8;
+  int64 id = 9;
+}
+
+message Transaction {
+  string transaction_id = 1;
+  int64 amount_cents = 2;
+  string description = 3;
+  string status = 4;
+}
+
+
+// Account Transactions
+message PagedAccountTransactions {
+  int32 offset = 1;
+
+  int32 limit = 2;
+
+  repeated Transaction transactions = 3;
+}
+
+// Error represents an error response
+message Error {
+  // Error code
+  string code = 1;
+  
+  // Human-readable error message
+  string message = 2;
+  
+  // Detailed error information for debugging
+  string details = 3;
+  
+  // HTTP status code equivalent
+  int32 http_status = 4;
+}
