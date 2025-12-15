@@ -31,18 +31,18 @@ service PaymentService {
 
 // Card Request
 message CardRequest {
-  string card_id = 1;
+  string cardId = 1;
 }
 
 // Card Details Request
 message CardDetailsRequest {
-  string card_id = 1;
+  string cardId = 1;
   optional string locale = 2;
 }
 
 // Paged Card Request
 message PagedCardRequest {
-  string card_id = 1;
+  string cardId = 1;
 
   int32 offset = 2;
 
@@ -51,7 +51,7 @@ message PagedCardRequest {
 
 // Card Details Response
 message CardDetails {
-  string card_details_url = 1;
+  string cardDetailsUrl = 1;
 }
 
 // Account Tokens Response
@@ -61,12 +61,20 @@ message AccountTokens {
 
 // Google Token
 message GoogleToken {
-  string token = 1;
+  string last4 = 1;
+  string paymentAccountReference = 2;
+  string googleOpaquePaymentCard = 3;
+  string opaquePaymentCard = 4;
+  string encAddress = 5;
+  string exp = 6;
 }
 
 // Apple Token
 message AppleToken {
-  string token = 1;
+  string activationData = 1;
+  string encryptedPassData = 2;
+  string ephemeralPublicKey = 3;
+  string paymentAccountReference = 4;
 }
 
 // Account Pin
@@ -75,11 +83,11 @@ message AccountPin{
 }
 
 message AccountBalance {
-  string balance_timestamp = 1;
-  string currency_code = 2;
-  double available_balance = 3;
-  double settled_balance = 4;
-  double reserved_balance = 5;
+  string balanceTimestamp = 1;
+  string currencyCode = 2;
+  double availableBalance = 3;
+  double settledBalance = 4;
+  double reservedBalance = 5;
 }
 
 // Account Details
@@ -96,8 +104,8 @@ message AccountDetails {
 }
 
 message Transaction {
-  string transaction_id = 1;
-  int64 amount_cents = 2;
+  string transactionId = 1;
+  int64 amountCents = 2;
   string description = 3;
   string status = 4;
 }
@@ -106,7 +114,6 @@ message Transaction {
 // Account Transactions
 message PagedAccountTransactions {
   int32 offset = 1;
-
   int32 limit = 2;
 
   repeated Transaction transactions = 3;
@@ -124,5 +131,5 @@ message Error {
   string details = 3;
   
   // HTTP status code equivalent
-  int32 http_status = 4;
+  int32 httpStatus = 4;
 }
