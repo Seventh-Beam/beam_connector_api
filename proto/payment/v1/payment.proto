@@ -14,7 +14,7 @@ service PaymentService {
   rpc GetAccountTokens(CardRequest) returns (AccountTokens);
 
   // Get Account Token
-  rpc GetAppleToken(CardRequest) returns (AppleToken);
+  rpc GetAppleToken(AppleTokenRequest) returns (AppleToken);
 
   // Get Account Token
   rpc GetGoogleToken(CardRequest) returns (GoogleToken);
@@ -39,6 +39,14 @@ message CardDetailsRequest {
   string cardId = 1;
   optional string locale = 2;
 }
+
+message AppleTokenRequest {
+  string cardId = 1;
+  string deviceCert = 2;
+  string nonce = 3;
+  string nonceSignature = 4;
+}
+
 
 // Paged Card Request
 message PagedCardRequest {
