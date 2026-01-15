@@ -42,9 +42,9 @@ message CardDetailsRequest {
 
 message AppleTokenRequest {
   string cardId = 1;
-  string deviceCert = 2;
-  string nonce = 3;
-  string nonceSignature = 4;
+  repeated bytes deviceCertChain = 2;
+  bytes nonce = 3;
+  bytes nonceSignature = 4;
 }
 
 
@@ -90,9 +90,9 @@ message GoogleToken {
 
 // Apple Token
 message AppleToken {
-  string activationData = 1;
-  string encryptedPassData = 2;
-  string ephemeralPublicKey = 3;
+  bytes activationData = 1;
+  bytes encryptedPassData = 2;
+  bytes ephemeralPublicKey = 3;
   string paymentAccountReference = 4;
 }
 
