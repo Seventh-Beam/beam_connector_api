@@ -13,11 +13,11 @@ service PaymentService {
   // Get Account Tokens
   rpc GetAccountTokens(CardRequest) returns (AccountTokens);
 
-  // Get Account Token
+  // Get Apple Token
   rpc GetAppleToken(AppleTokenRequest) returns (AppleToken);
 
-  // Get Account Token
-  rpc GetGoogleToken(CardRequest) returns (GoogleToken);
+  // Get Google Token
+  rpc GetGoogleToken(GoogleTokenRequest) returns (GoogleToken);
 
   // Retrieve Pin
   rpc GetAccountPin(CardRequest) returns (AccountPin);
@@ -47,6 +47,13 @@ message AppleTokenRequest {
   bytes nonceSignature = 4;
 }
 
+message GoogleTokenRequest {
+  string cardId = 1;
+  string deviceId = 2;
+  string clientCustomerId = 3;
+  string sessionId = 4;
+  string provisionMode = 5;
+}
 
 // Paged Card Request
 message PagedCardRequest {
@@ -128,7 +135,6 @@ message Transaction {
   string description = 3;
   string status = 4;
 }
-
 
 // Account Transactions
 message PagedAccountTransactions {
