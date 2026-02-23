@@ -51,6 +51,8 @@ message GoogleTokenRequest {
   string cardId = 1;
   string deviceId = 2;
   string clientCustomerId = 3;
+  string sessionId = 4;
+  string provisionMode = 5;
 }
 
 // Paged Card Request
