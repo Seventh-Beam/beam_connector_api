@@ -7,7 +7,7 @@ option java_package = "com.setldpay.sdk";
 
 // PaymentService provides payment processing capabilities
 service PaymentService {
-  // Get Card Not Present Details
+  // Get Card Wallet Secret
   rpc GetCardWalletSecret(CardDetailsRequest) returns (CardWalletSecret);
 
   // Get Card Not Present Details
@@ -16,10 +16,10 @@ service PaymentService {
   // Get Account Tokens
   rpc GetAccountTokens(CardRequest) returns (AccountTokens);
 
-  // Get Account Token
+  // Get Apple Token
   rpc GetAppleToken(CardRequest) returns (AppleToken);
 
-  // Get Account Token
+  // Get Google Token
   rpc GetGoogleToken(CardRequest) returns (GoogleToken);
 
   // Retrieve Pin
