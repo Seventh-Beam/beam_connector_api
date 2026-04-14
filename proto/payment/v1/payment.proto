@@ -65,7 +65,18 @@ message CardWalletSecret {
 
 // Account Tokens Response
 message AccountTokens {
+  repeated AccountToken tokens = 1;
+}
 
+message AccountToken {
+  string cardTokenId = 1;
+  string cardId = 2;
+  string expiryYear = 3;
+  string expiryMonth = 4;
+  string tokenStatus = 5;
+  string tokenRequestorId = 6;
+  string tokenUniqueReference = 7;
+  string panUniqueReference = 8;
 }
 
 // Google Token
