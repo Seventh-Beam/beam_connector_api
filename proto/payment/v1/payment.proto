@@ -7,16 +7,19 @@ option java_package = "com.setldpay.sdk";
 
 // PaymentService provides payment processing capabilities
 service PaymentService {
+  // Get Card Wallet Secret
+  rpc GetCardWalletSecret(CardDetailsRequest) returns (CardWalletSecret);
+
   // Get Card Not Present Details
   rpc GetCardDetails(CardDetailsRequest) returns (CardDetails);
 
   // Get Account Tokens
   rpc GetAccountTokens(CardRequest) returns (AccountTokens);
 
-  // Get Account Token
+  // Get Apple Token
   rpc GetAppleToken(CardRequest) returns (AppleToken);
 
-  // Get Account Token
+  // Get Google Token
   rpc GetGoogleToken(CardRequest) returns (GoogleToken);
 
   // Retrieve Pin
@@ -54,9 +57,26 @@ message CardDetails {
   string card_details_url = 1;
 }
 
+// Card Wallet Secret Response
+message CardWalletSecret {
+  string cardId = 1;
+  string cardWalletSecret = 2;
+}
+
 // Account Tokens Response
 message AccountTokens {
+  repeated AccountToken tokens = 1;
+}
 
+message AccountToken {
+  string cardTokenId = 1;
+  string cardId = 2;
+  string expiryYear = 3;
+  string expiryMonth = 4;
+  string tokenStatus = 5;
+  string tokenRequestorId = 6;
+  string tokenUniqueReference = 7;
+  string panUniqueReference = 8;
 }
 
 // Google Token
