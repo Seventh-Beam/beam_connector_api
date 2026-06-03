@@ -3,7 +3,7 @@ syntax = "proto3";
 package payment.v1;
 
 option go_package = "github.com/setldpay/pays_connector/api/payment/v1;paymentv1";
-option java_package = "com.setldpay.sdk";
+option java_package = "com.setldpay.sdk.data.payment";
 
 // PaymentService provides payment processing capabilities
 service PaymentService {
